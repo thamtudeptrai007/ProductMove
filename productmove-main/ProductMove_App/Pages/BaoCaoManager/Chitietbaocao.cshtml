@@ -1,0 +1,225 @@
+﻿@page
+@model ProductMove_App.Pages.BaoCaoManager.ChitietbaocaoModel
+@{
+}
+<button class="btn btn-success" id="btnReport">In Báo Cáo</button>
+<div class="d-none" id="report">
+    
+    <h3>Đơn vị báo cáo: @HttpContext.Session.GetString("phanquyen") ở @HttpContext.Session.GetString("diachi") </h3>
+    <h2 style="text-align:center">Báo cáo nhập xuất hàng</h2>
+    @if (Model.BaoCao.LoaiBaoCao == 1)
+    {
+        <h3 style="text-align:center">Tháng: @ViewBag.quy Năm: @ViewBag.nam </h3>
+    }
+    @if (Model.BaoCao.LoaiBaoCao == 2)
+    {
+        <h3 style="text-align:center">Năm: @Model.BaoCao.ThoiGian </h3>
+    }
+    @if (Model.BaoCao.LoaiBaoCao == 3)
+    {
+        <h3 style="text-align:center">Quý: @ViewBag.quy Năm: @ViewBag.nam </h3>
+    }
+
+    <h4>Nhập Hàng</h4>
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Ngày Nhập Hàng</th>
+                    <th>Sản Phẩm</th>
+                    <th>Số Lượng</th>
+                    <th>Đơn Giá</th>
+
+                </tr>
+
+
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.NhapKho)
+                {
+
+                    <tr>
+                        <th> @item.NgayNhap </th>
+                        <th> @item.SanPham.TenSanPham </th>
+                        <th> @item.SoLuong </th>
+                        <th> @item.SanPham.GiaThanh </th>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <h4>Xuất hàng</h4>
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Ngày Xuất Hàng</th>
+                    <th>Sản Phẩm</th>
+                    <th>Số Lượng</th>
+                    <th>Đơn Giá</th>
+
+                </tr>
+
+
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.XuatKho)
+                {
+
+                    <tr>
+                        <th> @item.NgayXuat </th>
+                        <th> @item.SanPham.TenSanPham </th>
+                        <th> @item.SoLuong </th>
+                        <th> @item.SanPham.GiaThanh </th>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <h4>Tồn Kho tính đến thời điểm lập báo cáo</h4>
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Sản Phẩm</th>
+                    <th>Trạng Thái</th>
+                    <th>Tồn Kho</th>
+                </tr>
+
+
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.ChiTietKho)
+                {
+
+                    <tr>
+                        <th> @item.SanPham.TenSanPham </th>
+                        <th> @item.TrangThaiSanPham </th>
+                        <th> @item.SoLuong </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <h5 style="text-align:right">......., Ngày .... Tháng .... Năm .... </h5>
+    <h5 style="text-align:right;">        Người lập báo cáo         .</h5>
+</div>
+<div>
+    <h3>Đơn vị báo cáo: @HttpContext.Session.GetString("phanquyen") ở @HttpContext.Session.GetString("diachi") </h3>
+    <h2 style="text-align:center">Báo cáo nhập xuất hàng</h2>
+    @if (Model.BaoCao.LoaiBaoCao == 1)
+    {
+        <h3 style="text-align:center">Tháng:@ViewBag.quy Năm: @ViewBag.nam </h3>
+    }
+    @if (Model.BaoCao.LoaiBaoCao == 2)
+    {
+        <h3 style="text-align:center">Năm:@Model.BaoCao.ThoiGian </h3>
+    }
+    @if (Model.BaoCao.LoaiBaoCao == 3)
+    {
+        <h3 style="text-align:center">Quý: @ViewBag.quy Năm:@ViewBag.nam </h3>
+    }
+
+    <h4 style="background-color:yellow" >Nhập Hàng</h4>
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Ngày Nhập Hàng</th>
+                    <th>Sản Phẩm</th>
+                    <th>Số Lượng</th>
+                    <th>Đơn Giá</th>
+
+                </tr>
+
+
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.NhapKho)
+                {
+
+                    <tr>
+                        <th> @item.NgayNhap </th>
+                        <th> @item.SanPham.TenSanPham </th>
+                        <th> @item.SoLuong </th>
+                        <th> @item.SanPham.GiaThanh </th>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <h4 style="background-color:yellow" >Xuất hàng</h4>
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Ngày Xuất Hàng</th>
+                    <th>Sản Phẩm</th>
+                    <th>Số Lượng</th>
+                    <th>Đơn Giá</th>
+
+                </tr>
+
+
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.XuatKho)
+                {
+
+                    <tr>
+                        <th> @item.NgayXuat </th>
+                        <th> @item.SanPham.TenSanPham </th>
+                        <th> @item.SoLuong </th>
+                        <th> @item.SanPham.GiaThanh </th>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <h4 style="background-color:yellow">Tồn Kho tính đến thời điểm lập báo cáo</h4>
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Sản Phẩm</th>
+                    <th>Trạng Thái</th>
+                    <th>Tồn Kho</th>
+                </tr>
+
+
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.ChiTietKho)
+                {
+
+                    <tr>
+                        <th> @item.SanPham.TenSanPham </th>
+                        <th> @item.TrangThaiSanPham </th>
+                        <th> @item.SoLuong </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <h5 style="text-align:right">......., Ngày .... Tháng .... Năm .... </h5>
+    <h5 style="text-align:right;">        Người lập báo cáo         .</h5>
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $('#btnReport').click(function(){
+        document.body.innerHTML = document.all.item("report").innerHTML
+        window.print()
+        window.location.reload()
+
+    })
+</script>

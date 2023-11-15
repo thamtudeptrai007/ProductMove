@@ -1,0 +1,57 @@
+﻿@page
+@model ProductMove_App.Pages.SanPhamManager.LapHoaDonModel
+@{
+}
+<h1>Lập hóa đơn bán sản phẩm</h1>
+
+<h4>Thông tin chi tiết</h4>
+<hr />
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="khachHang.TenKhachHang"></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="khachHang.TenKhachHang" />
+                <span asp-validation-for="khachHang.TenKhachHang" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="khachHang.SoDienThoai"></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="khachHang.SoDienThoai" />
+                <span asp-validation-for="khachHang.SoDienThoai" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="khachHang.DiaChi"></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="khachHang.DiaChi" />
+                <span asp-validation-for="khachHang.DiaChi" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="seri.tenSeri"></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="seri.tenSeri" />
+                @if (@ViewBag.nodata != null)
+                {
+                    <span class="text-danger">Số seri không tồn tại.</span>
+                }
+                else
+                {
+                    <span asp-validation-for="seri.tenSeri" class="text-danger"></span>
+
+                }
+            </div>
+        </div>
+        <div class="row mb-3">
+            <input type="submit" value="Xác nhận" class="btn btn-primary" />
+            <a style="margin-left: 10px;" class="btn btn-secondary" asp-page="Index">Trở về</a>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

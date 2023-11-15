@@ -1,0 +1,39 @@
+﻿@page
+@model ProductMove_App.Pages.LoaiSanPhamManager.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Thêm mới loại sản phẩm</h1>
+
+<h4>Thông tin loại sản phẩm</h4>
+<hr />
+
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="LoaiSanPham.TenLoaiSanPham"></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="LoaiSanPham.TenLoaiSanPham" />
+                <span asp-validation-for="LoaiSanPham.TenLoaiSanPham" class="text-danger"></span>
+                @{
+                    if (ViewBag.checkdb != null)
+                    {
+                        <span asp-validation-for="LoaiSanPham.TenLoaiSanPham" class="text-danger">Loại Sản phẩm đã tồn tại</span>
+                    }
+                }
+            </div>
+            <div class="row mb-3" style="margin-left: 10px;">
+                <input type="submit" value="Xác nhận" class="btn btn-primary" />
+                <a style="margin-left: 10px;" class="btn btn-secondary" asp-page="Index">Trở về</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

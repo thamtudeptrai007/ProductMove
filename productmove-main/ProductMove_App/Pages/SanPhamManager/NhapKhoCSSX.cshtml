@@ -1,0 +1,35 @@
+﻿@page
+@model ProductMove_App.Pages.SanPhamManager.NhapKhoCSSXModel
+@{
+
+}
+<h1>Thêm sản phẩm vào kho</h1>
+
+<h4>Thông tin chi tiết sản phẩm vừa được sản xuất</h4>
+<hr />
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" name="id" asp-for="NhapKho.idSanPham"></label>
+            <div class="col-sm-6">
+                <select asp-for="NhapKho.idSanPham" class="form-control" asp-items="ViewBag.modelsp"></select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="NhapKho.SoLuong"></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="NhapKho.SoLuong" />
+                <span asp-validation-for="NhapKho.SoLuong" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <input type="submit" value="Xác nhận" class="btn btn-primary" />
+            <a style="margin-left: 10px;" class="btn btn-secondary" asp-page="Index">Trở về</a>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

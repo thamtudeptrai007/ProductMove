@@ -1,0 +1,15 @@
+﻿@page
+@model ProductMove_App.Pages.BaoCaoManager.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Xóa báo cáo</h1>
+
+<h3>Bạn có chắc là muốn xóa báo cáo?</h3>
+<form method="post">
+    <input type="hidden" asp-for="BaoCao.IdBaoCao" />
+    <input type="submit" value="Xác nhận" class="btn btn-danger" /> |
+    <a asp-page="./Index">Trở về</a>
+</form>

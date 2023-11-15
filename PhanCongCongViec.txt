@@ -1,0 +1,12 @@
+Các thành viên:
+- Dương Thanh Hiền (trưởng nhóm):
+  + MSSV: 20020013
+  + Công việc: API -  Kho, NhapKho, XuatKho, SanPham, LoaiSanPham, ChiTietKho, QuanLyTaiKhoan, Phân luồng khi tạo sản phẩm mới, phân tích cụ thể từng sản phẩm đang ở trạng thái gì: đã bán, máy mới; Nhập kho của trung tâm bảo hành chưa hoàn chỉnh
+- Nguyễn Quang Huy: 20020418
+  + MSSV: 	
+  + Công việc: TaiKhoan, SanPham, ChiTietKho - fix bug API; Báo cáo nhập xuất kho, thống kê tổng quát ở phân quyền admin; Xuất kho.
+- Lê Ngọc Minh: 
+  + MSSV: 20020058
+  + Công việc: Đăng nhập đăng xuất, Phân quyền , truy xuất thông tin của tài khoản đang đăng nhập, CRUD theo từng tài khoản đăng nhập; Nhập kho.
+
+Link project: https://gitlab.com/hiendthn19/productmove.git

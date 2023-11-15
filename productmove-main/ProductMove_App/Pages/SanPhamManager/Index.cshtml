@@ -1,0 +1,138 @@
+﻿@page
+@model ProductMove_App.Pages.SanPhamManager.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    var phanquyen = @HttpContext.Session.GetString("phanquyen");
+}
+@if (phanquyen == "ADMIN")
+{
+    <html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <meta charshet="utf-8" />
+    </head>
+
+    <body>
+        <h2>Danh mục sản phẩm tất cả sản phẩm</h2>
+        <div>
+            <a class="btn btn-primary btn-sm" asp-page="./Create">Thêm sản phẩm mới</a>
+        </div>
+        <br />
+        <div>
+            <table class="table table-striped table-bordered" id="myTable">
+                <thead>
+                    <tr style="text-align:center">
+                        <th>Tên sản phẩm</th>
+                        <th>Loại sản phẩm</th>
+                        <th>Thời hạn bảo hành</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="myTablee">
+                    @foreach (var item in Model.SanPham)
+                    {
+                        <tr style="height:10px">
+                            <td>@item.TenSanPham</td>
+                            <td>@item.LoaiSanPham!.TenLoaiSanPham</td>
+                            <td>@item.ThoiGianBaoHanh năm</td>
+                            <td style="text-align: center; width: 200px">
+                                <a class="btn btn-success btn-sm" asp-page="./Edit" asp-route-id="@item.idSanPham">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a class="btn btn-info btn-sm" asp-page="./Details" asp-route-id="@item.idSanPham">
+                                    <i class="bi bi-info-square-fill"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm" asp-page="./Delete" asp-route-id="@item.idSanPham">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#myTable').DataTable();
+            });
+        </script>
+    </body>
+    </html>
+}
+else
+{
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <meta charshet="utf-8" />
+    </head>
+
+    <body>
+        <h2>Thông tin chi tiết các sản phẩm có trong kho</h2>
+        @if (phanquyen == "Cơ sở sản xuất")
+        {
+            <div>
+                <a class="btn btn-primary btn-sm" asp-page="./NhapKhoCSSX">Nhập Kho - Các máy vừa sản xuất</a>
+                <a class="btn btn-primary btn-sm" asp-page="./NhapKhoCSSX_BH">Nhập Kho - Máy không sửa chữa được</a>
+            </div>
+        }
+        else if (phanquyen == "Trung tâm bảo hành")
+        {
+            <div>
+                <a class="btn btn-primary btn-sm" asp-page="./NhapKhoTTBH">Nhập Kho - Sản phẩm bảo hành</a>
+            </div>
+        }
+        else if (phanquyen == "Nhà phân phối")
+        {
+            <div>
+                <a class="btn btn-primary btn-sm" asp-page="./NhapKhoDLPP">Nhập kho - Những sản phẩm đã sản xuất trên toàn quốc</a>
+                <a class="btn btn-primary btn-sm" asp-page="./LapHoaDon">Lập hóa đơn -  Bán sản phẩm</a>
+                <a class="btn btn-primary btn-sm" asp-page="./NhapKhoDLPP_BH">Nhập kho -  Nhận máy bảo hành từ khách</a>
+                <a class="btn btn-primary btn-sm" asp-page="./NhapKho_DLPP_BH_Xong">Nhập kho -  Nhận sản phẩm bảo hành xong</a>
+                <a class="btn btn-primary btn-sm" asp-page="./TraMay_Saubaohanh">Trả máy -  Sau khi bảo hành</a>
+            </div>
+        }
+        <br>
+        <div>
+            <table class="table table-striped table-bordered" id="myTable">
+                <thead>
+                    <tr style="text-align:center">
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody id="myTablee">
+                    @foreach (var item in Model.ChiTietKho)
+                    {
+                        <tr style="height:10px">
+                            <td>@item.SanPham!.TenSanPham</td>
+                            <td>@item.SoLuong</td>
+                            <td>@item.TrangThaiSanPham</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#myTable').DataTable();
+            });
+        </script>
+    </body>
+
+}

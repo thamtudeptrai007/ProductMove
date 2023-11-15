@@ -1,0 +1,101 @@
+﻿@page
+@model ProductMove_App.Pages.TaiKhoanManager.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <meta charshet="utf-8" />
+</head>
+
+<body>
+    <h2>Quản lý tài khoản</h2>
+    <div>
+        <a class="btn btn-primary btn-sm" asp-page="./Create">Thêm mới tài khoản</a>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>@ViewBag.cssx</h3>
+
+                    <p>Tổng số cơ sở sản xuất</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>@ViewBag.pp</h3>
+
+                    <p>Tổng số đại lý phân phối</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>@ViewBag.bh</h3>
+
+                    <p>Tổng số trung tâm bảo hành</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div>
+        <table class="table table-striped table-bordered" id="myTable">
+            <thead>
+                <tr style="text-align:center">
+                    <th>Tên tài khoản</th>
+                    <th>Phân quyền</th>
+                    <th>Địa chỉ</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="myTablee">
+                @foreach (var item in Model.TaiKhoan)
+                {
+                    @if(@item.PhanQuyen !="ADMIN"){
+                        <tr style="height:10px">
+                        <td>@item.TenDangNhap</td>
+                        <td><a asp-page="/TaiKhoanManager/ThongTinTaiKhoan" asp-route-id="@item.idTaiKhoan" asp-route-pq="@item.PhanQuyen ở @item.DiaChi">@item.PhanQuyen</a></td>
+                        <td>@item.DiaChi</td>
+                        <td>@item.Mail</td>
+                        <td style="text-align: center; width: 200px">
+                            <a class="btn btn-success btn-sm" asp-page="./Edit" asp-route-id="@item.idTaiKhoan">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a class="btn btn-info btn-sm" asp-page="./Details" asp-route-id="@item.idTaiKhoan">
+                                <i class="bi bi-info-square-fill"></i>
+                            </a>
+                            <a class="btn btn-danger btn-sm" asp-page="./Delete" asp-route-id="@item.idTaiKhoan">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                    
+                }
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+</body>

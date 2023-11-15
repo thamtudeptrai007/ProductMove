@@ -1,0 +1,64 @@
+﻿@page
+@using System.Globalization
+@model ProductMove_App.Pages.BaoCaoManager.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Tổng hợp các báo cáo đã lập</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Loại báo cáo
+            </th>
+            <th>
+                Thời gian
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BaoCao)
+        {
+            <tr>
+                @{
+                    if (@item.LoaiBaoCao == 1)
+                    {
+                        <td>Báo cáo theo tháng</td>
+                    }
+                    else if (@item.LoaiBaoCao == 2)
+                    {
+                        <td>Báo cáo theo năm</td>
+                    }
+                    else
+                    {
+                        <td>Báo cáo theo quý</td>
+                    }
+                }
+                @{
+                    if (@item.LoaiBaoCao == 3)
+                    {
+                        int quy = DateTime.ParseExact(item.ThoiGian!, "MM/yyyy", CultureInfo.InvariantCulture).Month;
+                        int nam = DateTime.ParseExact(item.ThoiGian!, "MM/yyyy", CultureInfo.InvariantCulture).Year;
+                        <td>Quý: @quy Năm: @nam</td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ThoiGian)
+                        </td>
+                    }
+                }
+
+                <td>
+                    <a asp-page="./Chitietbaocao" asp-route-id_="@item.IdBaoCao">Chi tiết</a>
+                    <br>
+                    <a asp-page="./Delete" asp-route-id_="@item.IdBaoCao">Xóa báo cáo</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

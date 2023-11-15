@@ -1,0 +1,84 @@
+﻿@page
+@model ProductMove_App.Pages.TaiKhoanManager.ThongTinTaiKhoanModel
+@{
+}
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <meta charshet="utf-8" />
+</head>
+
+<body>
+    <h2>Thông tin chi tiết kho của @ViewBag.ttchitiet</h2>
+    <br/>
+    @*<div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>@ViewBag.tongsp</h3>
+
+                    <p>Tổng số sản phẩm trong kho </p>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>@ViewBag.tongspmoi</h3>
+
+                    <p>Tổng số sản phẩm mới </p>
+                </div>
+                
+               
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>@ViewBag.tongspbh</h3>
+
+                    <p>Tổng số sản phẩm bảo hành </p>
+                </div>
+                
+               
+            </div>
+        </div>
+    </div>*@
+    <br />
+    <div>
+        <table class="table table-striped table-bordered" id="myTable">
+            <thead>
+                <tr style="text-align:center">
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody id="myTablee">
+                @foreach (var item in Model.ChiTietKho)
+                {
+                    <tr style="height:10px">
+                        <td>@item.SanPham!.TenSanPham</td>
+                        <td>@item.SoLuong</td>
+                        <td>@item.TrangThaiSanPham</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+</body>

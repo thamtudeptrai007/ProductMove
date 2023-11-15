@@ -1,0 +1,52 @@
+﻿@page
+@model ProductMove_App.Pages.TaiKhoanManager.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Chi tiết thông tin</h1>
+
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="TaiKhoan.idTaiKhoan" />
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="TaiKhoan.TenDangNhap"></label>
+            <div class="col-sm-6">
+                <input asp-for="TaiKhoan.TenDangNhap" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-3" style="display:none">
+            <label class="col-sm-3 col-form-label" asp-for="TaiKhoan.MatKhau"></label>
+            <div class="col-sm-6">
+                <input readonly type="text" class="form-control" asp-for="TaiKhoan.MatKhau" />
+                <span asp-validation-for="TaiKhoan.MatKhau" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="TaiKhoan.PhanQuyen"></label>
+            <div class="col-sm-6">
+                <input readonly type="text" class="form-control" asp-for="TaiKhoan.PhanQuyen" />
+                <span asp-validation-for="TaiKhoan.PhanQuyen" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="TaiKhoan.DiaChi"></label>
+            <div class="col-sm-6">
+                <input readonly type="text" class="form-control" asp-for="TaiKhoan.DiaChi" />
+                <span asp-validation-for="TaiKhoan.DiaChi" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="TaiKhoan.Mail"></label>
+            <div class="col-sm-6">
+                <input readonly type="text" id="name" class="form-control" asp-for="TaiKhoan.Mail" />
+                <span asp-validation-for="TaiKhoan.Mail" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <a style="margin-left: 10px;" class="btn btn-primary" asp-page="./Edit">Chỉnh sửa</a>
+            <a style="margin-left: 10px;" class="btn btn-secondary" asp-page="Index">Trở về</a>
+        </div>
+    </form>
+</div>

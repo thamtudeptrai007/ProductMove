@@ -1,0 +1,47 @@
+﻿@page
+@model ProductMove_App.Pages.SanPhamManager.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Xóa sản phẩm</h1>
+
+<h3>Bạn chắc chắc là xóa sản phẩm này ra khỏi danh sách kinh doanh?</h3>
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="SanPham.idSanPham" />
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="SanPham.TenSanPham"></label>
+            <div class="col-sm-6">
+                <input asp-for="SanPham.TenSanPham" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="SanPham.GiaThanh"></label>
+            <div class="col-sm-6">
+                <input readonly type="text" class="form-control" asp-for="SanPham.GiaThanh" />
+                <span asp-validation-for="SanPham.GiaThanh" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="SanPham.ThoiGianBaoHanh"></label>
+            <div class="col-sm-6">
+                <input readonly type="text" id="name" class="form-control" asp-for="SanPham.ThoiGianBaoHanh" />
+                <span asp-validation-for="SanPham.ThoiGianBaoHanh" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="SanPham.MoTaSanPham"></label>
+            <div class="col-sm-6">
+                <textarea readonly type="text" id="name" class="form-control" asp-for="SanPham.MoTaSanPham"></textarea>
+                <span asp-validation-for="SanPham.MoTaSanPham" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <input type="submit" value="Xác nhận" class="btn btn-danger" />
+            <a style="margin-left: 10px;" class="btn btn-secondary" asp-page="Index">Trở về</a>
+        </div>
+    </form>
+</div>
+

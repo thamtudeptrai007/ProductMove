@@ -1,0 +1,323 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+    
+}
+@{
+    var phanquyen = HttpContext.Session.GetString("phanquyen");
+}
+@if (phanquyen == "ADMIN")
+{
+    <div>
+       <h3>Cơ Sở Sản Xuất</h3> 
+    </div>
+    <br />
+    <div>
+        @foreach(var item in Model.dstaikhoansx)
+        {
+            var idkho = 0;
+
+            <div>@item.DiaChi</div>
+            <br />
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr >
+                            <th>Tên sản phẩm</th>
+                            <th>Loại sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    @{
+                        @foreach(var _item in Model.khos)
+                        {
+                            @if (item.idTaiKhoan == _item.idTaiKhoan)
+                            {
+                                idkho = _item.idKho;
+                            }
+                        }
+                    }
+                    <tbody>
+                        @foreach(var item_ in Model.chiTietKhos)
+                        {
+                            @if (item_.idKho == idkho)
+                            {
+                                <tr style="height:10px">
+                                    <td>@item_.SanPham?.TenSanPham</td>
+                                    <td>@item_.TrangThaiSanPham</td>
+                                    <td>@item_.SoLuong</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+    <div>
+        <h3>Trung Tâm Bảo Hành</h3> 
+    </div>
+    <br />
+    <div>
+        @foreach(var item in Model.dstaikhoanbh)
+        {
+            var idkho = 0;
+
+            <div>@item.DiaChi</div>
+            <br />
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr >
+                            <th>Tên sản phẩm</th>
+                            <th>Loại sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    @{
+                        @foreach(var _item in Model.khos)
+                        {
+                            @if (item.idTaiKhoan == _item.idTaiKhoan)
+                            {
+                                idkho = _item.idKho;
+                            }
+                        }
+                    }
+                    <tbody>
+                        @foreach(var item_ in Model.chiTietKhos)
+                        {
+                            @if (item_.idKho == idkho)
+                            {
+                                <tr style="height:10px">
+                                    <td>@item_.SanPham?.TenSanPham</td>
+                                    <td>@item_.TrangThaiSanPham</td>
+                                    <td>@item_.SoLuong</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+    <div>
+        <h3>Đại Lý Phân Phối</h3>
+    </div>
+    <br />
+    <div>
+        @foreach(var item in Model.dstaikhoanpp)
+        {
+            var idkho = 0;
+
+            <div>@item.DiaChi</div>
+            <br />
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr >
+                            <th>Tên sản phẩm</th>
+                            <th>Loại sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    @{
+                        @foreach(var _item in Model.khos)
+                        {
+                            @if (item.idTaiKhoan == _item.idTaiKhoan)
+                            {
+                                idkho = _item.idKho;
+                            }
+                        }
+                    }
+                    <tbody>
+                        @foreach(var item_ in Model.chiTietKhos)
+                        {
+                            @if (item_.idKho == idkho)
+                            {
+                                <tr style="height:10px">
+                                    <td>@item_.SanPham?.TenSanPham</td>
+                                    <td>@item_.TrangThaiSanPham</td>
+                                    <td>@item_.SoLuong</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+}
+else if (phanquyen == "Cơ sở sản xuất")
+{
+    <form method="post" enctype="multipart/form-data">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    <h2 style="text-align:center">Thống Kê</h2>
+                    <br />
+                    Chọn thời gian thống kê
+                    <br />
+                    <table>
+                        <tr>
+                            <th>
+                                <input type="radio"
+                                       id="thang"
+                                       name="LoaiBaoCao"
+                                       value="1"
+                                       checked
+                                       onclick="EnableDisableTB()" />
+                                Thống kê theo tháng
+                            </th>
+                            <th>
+                                <input type="text"
+                                       id="thangtxt"
+                                       name="thang"
+                                       
+                                       placeholder="Nhập tháng" />
+                            </th>
+                            <th>
+                                <input type="text"
+                                       id="thang_txt"
+                                       name="ThoiGian"
+                                       
+                                       placeholder="Nhập năm" />
+                            </th>
+
+                        </tr>
+                        <tr>
+                            <th>
+                                <input type="radio"
+                                       id="nam"
+                                       name="LoaiBaoCao"
+                                       value="2"
+                                       onclick="EnableDisableTB()" />
+                                Thống kê theo năm
+                            </th>
+                            <th>
+                                <input type="text"
+                                       id="namtxt"
+                                       name="ThoiGian"
+                                       disabled="disabled"
+                                       placeholder="Nhập năm" />
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input type="radio"
+                                       id="quy"
+                                       name="LoaiBaoCao"
+                                       value="3"
+                                       onclick="EnableDisableTB()" />
+                                Thống kê theo quý
+                            </th>
+                            <th>
+                                <input type="text"
+                                       id="quy_txt"
+                                       name="thang"
+                                       disabled="disabled"
+                                       placeholder="Nhập quý" />
+                            </th>
+                            <th>
+                                <input type="text"
+                                       id="quytxt"
+                                       name="ThoiGian"
+                                       disabled="disabled"
+                                       placeholder="Nhập năm" />
+                            </th>
+
+
+                        </tr>
+
+                    </table>
+                </th>
+                <th>
+                    <div class="row mb-3">
+                        <input type="submit" value="Thống Kê" class="btn btn-primary" />
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</form>
+<div>
+    <h3>Thống kê số hàng đã bán</h3>
+    <br/>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Ngày xuất</th>
+                <th>Số Lượng</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.dsBanHangsx)
+            {
+                <tr>
+                    <th>@item.SanPham.TenSanPham</th>
+                    <th>@item.NgayXuat</th>
+                    <th>@item.SoLuong</th>
+                </tr>
+            }
+        </tbody>
+            
+        </table>
+</div>
+
+<script type="text/javascript">
+    function EnableDisableTB() {
+      var thang = document.getElementById("thang");
+      var nam = document.getElementById("nam");
+      var quy = document.getElementById("quy");
+      var thangtxt = document.getElementById("thangtxt");
+      var namtxt = document.getElementById("namtxt");
+      var quytxt = document.getElementById("quytxt");
+      thangtxt.disabled = thang.checked ? false : true;
+      thang_txt.disabled = thang.checked ? false : true;
+      thang_txt.value = "";
+      thangtxt.value = "";
+      if (!thangtxt.disabled) {
+        thangtxt.focus();
+      }
+      if(!thang_txt.disabled){
+          thang_txt.focus();
+      }
+      namtxt.disabled = nam.checked? false :true;
+      namtxt.value="";
+      if (!namtxt.disabled) {
+        namtxt.focus();
+      }
+      quytxt.disabled = quy.checked? false :true;
+      quy_txt.disabled = quy.checked? false :true;
+      quy_txt.value ="";
+      quytxt.value="";
+      if (!quytxt.disabled) {
+        quytxt.focus();
+      }
+      if(!quy_txt.disabled){
+          quy_txt.focus();
+      }
+    }
+</script>
+
+
+}
+else if (phanquyen == "Trung tâm bảo hành")
+{
+
+}
+else if (phanquyen == "Nhà phân phối")
+{
+
+}
+
+
+

@@ -1,0 +1,33 @@
+﻿@page
+@model ProductMove_App.Pages.SanPhamManager.NhapKhoCSSX_BHModel
+@{
+    var check = ViewBag.noseri;
+}
+<h1>Bảo hành sản phẩm</h1>
+
+<h4>Nhập thông tin số seri của sản phẩm</h4>
+<hr />
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="Seri.tenSeri"></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="Seri.tenSeri" />
+                <span asp-validation-for="Seri.tenSeri" class="text-danger"></span>
+                @if (check != null)
+                {
+                    <span class="text-danger">Số seri không tồn tại</span>
+                }
+            </div>
+        </div>
+        <div class="row mb-3">
+            <input type="submit" value="Xác nhận" class="btn btn-primary" />
+            <a style="margin-left: 10px;" class="btn btn-secondary" asp-page="Index">Trở về</a>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

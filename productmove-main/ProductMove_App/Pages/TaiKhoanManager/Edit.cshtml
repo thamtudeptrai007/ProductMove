@@ -1,0 +1,96 @@
+﻿@page
+@model ProductMove_App.Pages.TaiKhoanManager.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Chỉnh sửa thông tin tài khoản</h1>
+
+<h4>Thông tin</h4>
+<hr />
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="TaiKhoan.idTaiKhoan" />
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="TaiKhoan.TenDangNhap"></label>
+            <div class="col-sm-6">
+                <input asp-for="TaiKhoan.TenDangNhap" class="form-control" />
+                @if (@ViewBag.checkUername != null)
+                {
+                    <span asp-validation-for="TaiKhoan.TenDangNhap" class="text-danger">Tên đăng nhập không được ghi khoảng trắng</span>
+                }
+                else
+                {
+                    <span asp-validation-for="TaiKhoan.TenDangNhap" class="text-danger"></span>
+                }
+            </div>
+        </div>
+        <div class="row mb-3" style="display:none">
+            <label class="col-sm-3 col-form-label" asp-for="TaiKhoan.MatKhau"></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="TaiKhoan.MatKhau" />
+                <span asp-validation-for="TaiKhoan.MatKhau" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="TaiKhoan"></label>
+            <div class="col-sm-6">
+                <select class="form-control" name="number">
+                    <option value="checked">Chọn phân quyền thích hợp</option>
+                    @{
+                        if (@ViewBag.cssx != null)
+                        {
+                            <option value="Cơ sở sản xuất" selected>Cơ sở sản xuất</option>
+                        }
+                        else
+                        {
+                            <option value="Cơ sở sản xuất">Cơ sở sản xuất</option>
+                        }
+                        if (@ViewBag.npp != null)
+                        {
+                            <option value="Nhà phân phối" selected>Nhà phân phối</option>
+                        }
+                        else
+                        {
+                            <option value="Nhà phân phối">Nhà phân phối</option>
+                        }
+                        if (@ViewBag.ttbh != null)
+                        {
+                            <option value="Trung tâm bảo hành" selected>Trung tâm bảo hành</option>
+                        }
+                        else
+                        {
+                            <option value="Trung tâm bảo hành">Trung tâm bảo hành</option>
+                        }
+
+                    }
+                </select>
+                <span asp-validation-for="TaiKhoan" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="TaiKhoan.DiaChi"></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="TaiKhoan.DiaChi" />
+                <span asp-validation-for="TaiKhoan.DiaChi" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="TaiKhoan.Mail"></label>
+            <div class="col-sm-6">
+                <input type="text" id="name" class="form-control" asp-for="TaiKhoan.Mail" />
+                <span asp-validation-for="TaiKhoan.Mail" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <input type="submit" value="Xác nhận" class="btn btn-primary" />
+            <a style="margin-left: 10px;" class="btn btn-secondary" asp-page="Index">Trở về</a>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

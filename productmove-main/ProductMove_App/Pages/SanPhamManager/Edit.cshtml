@@ -1,0 +1,60 @@
+﻿@page
+@model ProductMove_App.Pages.SanPhamManager.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Chỉnh sửa thông tin sản phẩm</h1>
+
+<h4>Thông tin chi tiết</h4>
+<hr />
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="SanPham.idSanPham" />
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="SanPham.idLoaiSanPham"></label>
+            <div class="col-sm-6">
+                <select asp-for="SanPham.idLoaiSanPham" class="form-control" asp-items="ViewBag.idLoaiSanPham"></select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="SanPham.TenSanPham"></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="SanPham.TenSanPham" />
+                <span asp-validation-for="SanPham.TenSanPham" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="SanPham.GiaThanh"></label>
+            <div class="col-sm-6">
+                <input type="text" id="name" class="form-control" asp-for="SanPham.GiaThanh" />
+                <span asp-validation-for="SanPham.GiaThanh" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="SanPham.MoTaSanPham"></label>
+            <div class="col-sm-6">
+                <textarea type="text" id="name" class="form-control" asp-for="SanPham.MoTaSanPham"></textarea>
+                <span asp-validation-for="SanPham.MoTaSanPham" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" asp-for="SanPham.ThoiGianBaoHanh"></label>
+            <div class="col-sm-6">
+                <input type="text" id="name" class="form-control" asp-for="SanPham.ThoiGianBaoHanh" />
+                <span asp-validation-for="SanPham.ThoiGianBaoHanh" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <input type="submit" value="Xác nhận" class="btn btn-primary" />
+            <a style="margin-left: 10px;" class="btn btn-secondary" asp-page="Index">Trở về</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
